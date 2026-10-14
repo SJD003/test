@@ -2,59 +2,156 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#0f0f0f">
-<title>غير متصل - ميزان المحاسبة</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0a0a">
+<title>أوفلاين - ميزان المحاسبة</title>
+<link rel="icon" href="./icons/icon-192.png">
 <style>
-  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Tahoma,sans-serif}
-  body{background:#0f0f0f;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px;background:radial-gradient(circle at 50% 0%,#1e1e1e,#0f0f0f)}
-  .box{background:#1e1e1e;padding:28px 24px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:pop 0.4s ease}
-  @keyframes pop{from{opacity:0;transform:scale(0.9) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
-  h2{color:#d6c7a1;font-size:22px;font-weight:900}
-  .icon{font-size:48px;margin-bottom:12px;filter:drop-shadow(0 4px 10px rgba(214,199,161,0.3))}
-  p{color:#9aa0a6;margin-top:10px;font-size:13px;line-height:1.7}
-  .feat{margin-top:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px;text-align:right}
-  .feat div{font-size:12px;color:#d6c7a1;margin:5px 0;font-weight:700}
-  .feat div span{color:#9aa0a6;font-weight:600}
-  button{margin-top:18px;background:linear-gradient(135deg,#d6c7a1,#c7b07a);color:#000;border:none;padding:12px 20px;border-radius:12px;font-weight:900;width:100%;cursor:pointer;transition:all 0.2s;box-shadow:0 6px 20px rgba(214,199,161,0.25);font-size:14px}
-  button:active{transform:scale(0.97)}
-  .online-dot{width:8px;height:8px;background:#2ecc71;border-radius:50%;display:inline-block;margin-left:6px;animation:blink 1.5s infinite}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background:#0a0a0a;color:#f0f0f0;
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Noto Naskh Arabic',Tahoma,sans-serif;
+    direction:rtl;
+    min-height:100vh;
+    display:flex;align-items:center;justify-content:center;
+    padding:16px;
+  }
+  .offline-card{
+    max-width:380px;width:100%;
+    background:#121212;border:1px solid #2a2a2a;
+    border-radius:20px;padding:24px 20px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.6);
+  }
+  .icon{
+    width:64px;height:64px;margin:0 auto 16px auto;
+    background:linear-gradient(135deg, #d6c7a1 0%, #b8a882 100%);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:32px;
+  }
+  h1{
+    color:#d6c7a1;font-size:18px;font-weight:900;margin-bottom:8px;
+  }
+  .status{
+    background:#1a1a1a;border:1px dashed #d6c7a1;
+    border-radius:12px;padding:12px;margin:14px 0;
+    font-size:11px;line-height:1.7;color:#aaa;
+  }
+  .status b{ color:#4caf50; }
+  .status .warn{ color:#ff3b30; }
+  .list{
+    text-align:right;background:#0f0f0f;
+    border:1px solid #1e1e1e;border-radius:12px;
+    padding:12px;margin:12px 0;
+  }
+  .list div{
+    font-size:11px;padding:6px 0;
+    border-bottom:1px solid #1a1a1a;
+    display:flex;align-items:center;gap:8px;
+  }
+  .list div:last-child{ border:none; }
+  .btn{
+    display:block;width:100%;
+    background:#d6c7a1;color:#000;
+    border:none;border-radius:12px;
+    padding:14px;font-size:13px;font-weight:900;
+    cursor:pointer;text-decoration:none;
+    margin-top:12px;
+    transition:all 0.15s;
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn2{
+    display:block;width:100%;
+    background:transparent;color:#d6c7a1;
+    border:1px solid #d6c7a1;border-radius:12px;
+    padding:12px;font-size:11px;font-weight:800;
+    cursor:pointer;text-decoration:none;
+    margin-top:8px;
+  }
+  .small{
+    font-size:9px;color:#666;margin-top:10px;line-height:1.6;
+  }
 </style>
 </head>
 <body>
-<div class="box">
+<div class="offline-card">
   <div class="icon">📴</div>
-  <h2>أنت غير متصل</h2>
-  <p>لا تقلق، <b style="color:#fff">ميزان المحاسبة V21</b> يعمل بالكامل بدون انترنت</p>
+  <h1>وضع أوفلاين - V23</h1>
   
-  <div class="feat">
-    <div>✅ <span>أوقات الصلاة:</span> حساب فلكي دقيق من جهازك</div>
-    <div>✅ <span>صلاة الليل:</span> قبل الشروق بـ 220 دقيقة</div>
-    <div>✅ <span>القبلة:</span> حساب فلكي + بوصلة</div>
-    <div>✅ <span>الإشعارات:</span> محفوظة وتعمل في الخلفية</div>
-    <div>✅ <span>الميزان:</span> ذنوبك وطاعاتك محفوظة</div>
+  <div class="status">
+    <div><b>✅ التطبيق يعمل أوفلاين 100%</b></div>
+    <div>📍 يعتمد على <b>موقعك المحفوظ فقط</b> - لا يوجد موقع افتراضي</div>
+    <div>🔊 صوت الأذان <b>icons/Adan.mp3</b> محفوظ في الكاش</div>
+    <div>🕌 صلاة الليل <b>قبل الشروق 220 دقيقة</b> تعمل أوفلاين</div>
+    <div id="locationStatus" style="margin-top:8px;padding-top:8px;border-top:1px solid #222">
+      جاري فحص الموقع المحفوظ...
+    </div>
   </div>
 
-  <p id="status" style="margin-top:14px;font-size:11px"><span class="online-dot"></span> بانتظار عودة الانترنت...</p>
-  
-  <button onclick="location.href='./index.html'">العودة للتطبيق</button>
-  <button onclick="location.reload()" style="background:rgba(255,255,255,0.06);color:#9aa0a6;border:1px solid rgba(255,255,255,0.08);box-shadow:none;margin-top:10px">تحديث الصفحة</button>
+  <div class="list">
+    <div>✅ <span>أوقات الصلاة محسوبة فلكيا أوفلاين</span></div>
+    <div>✅ <span>اتجاه القبلة من موقعك المحفوظ</span></div>
+    <div>✅ <span>ميزان المحاسبة محفوظ في IndexedDB</span></div>
+    <div>✅ <span>إشعارات الأذان + اهتزاز + صوت Adan.mp3</span></div>
+    <div>✅ <span>اختيار مدينة يدوي (30 مدينة عراقية) أوفلاين</span></div>
+  </div>
+
+  <a href="./index.html" class="btn">🔙 الرجوع للتطبيق (أوفلاين)</a>
+  <button onclick="checkSaved()" class="btn2">🔍 فحص الموقع المحفوظ</button>
+  <button onclick="clearAndReload()" class="btn2" style="border-color:#ff3b30;color:#ff3b30">🔄 تحديث الكاش وإعادة التحميل</button>
+
+  <div class="small">
+    إذا ظهرت هذه الصفحة وأنت أوفلاين ولم تحفظ موقعك من قبل، افتح التطبيق مرة واحدة أونلاين واضغط "تحديد موقعي وحفظه" أو "تغيير المدينة".<br>
+    بعدها سيعمل التطبيق 100% بدون نت على موقعك المحفوظ فقط.<br>
+    V23 - تم حفظ Adan.mp3 في الكاش
+  </div>
 </div>
 
 <script>
-  // اذا رجع النت، ارجع تلقائيا
-  window.addEventListener('online', ()=>{ 
-    document.getElementById('status').innerHTML='✅ عاد الانترنت - جاري العودة...';
-    setTimeout(()=>location.href='./index.html', 800);
-  });
-  // حاول تحميل الكاش
-  if(!navigator.onLine){
-    setTimeout(()=>{
-      // نذكر المستخدم ان الإشعارات الخلفية ستبقى تعمل
-      console.log('offline mode - background notifications still scheduled in SW');
-    }, 1000);
+function checkSaved(){
+  const raw = localStorage.getItem('mizan_location');
+  const el = document.getElementById('locationStatus');
+  if(raw){
+    try{
+      const loc = JSON.parse(raw);
+      el.innerHTML = `✅ <b style="color:#4caf50">موقع محفوظ:</b> ${loc.city} - ${loc.lat.toFixed(3)}, ${loc.lng.toFixed(3)}<br><span style="font-size:9px;color:#888">محفوظ منذ ${new Date(loc.savedAt).toLocaleDateString('ar-IQ')} - يعمل أوفلاين</span>`;
+      const audio = new Audio('./icons/Adan.mp3');
+      audio.volume = 0.3;
+      audio.play().then(()=>{ setTimeout(()=>{audio.pause();}, 2000); }).catch(()=>{});
+    }catch{
+      el.innerHTML = `<span class="warn">❌ خطأ في قراءة الموقع المحفوظ</span>`;
+    }
+  }else{
+    el.innerHTML = `<span class="warn">❌ لا يوجد موقع محفوظ - افتح التطبيق أونلاين مرة واحدة واحفظ موقعك</span>`;
   }
+  if('caches' in window){
+    caches.match('./icons/Adan.mp3').then(r=>{
+      const status = document.createElement('div');
+      status.style.fontSize='9px';
+      status.style.marginTop='6px';
+      if(r) status.innerHTML = '🔊 <b style="color:#4caf50">Adan.mp3 محفوظ في الكاش - يعمل أوفلاين</b>';
+      else status.innerHTML = '⚠️ <b style="color:#ff3b30">Adan.mp3 غير محفوظ - أعد تحميل التطبيق أونلاين</b>';
+      el.appendChild(status);
+    });
+  }
+}
+function clearAndReload(){
+  if('caches' in window){
+    caches.keys().then(keys=>Promise.all(keys.map(k=>caches.delete(k)))).then(()=>{
+      localStorage.removeItem('mizan_cached_timings');
+      location.href = './index.html';
+    });
+  }else{
+    location.href = './index.html';
+  }
+}
+checkSaved();
+window.addEventListener('online', ()=>{
+  const el = document.getElementById('locationStatus');
+  el.innerHTML = '✅ <b style="color:#4caf50">تم الاتصال - جاري الرجوع للتطبيق...</b>';
+  setTimeout(()=> location.href='./index.html', 1000);
+});
 </script>
 </body>
 </html>
