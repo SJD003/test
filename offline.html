@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0f0f0f">
+<title>غير متصل - ميزان المحاسبة</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:system-ui,Tahoma,sans-serif}
+  body{background:#0f0f0f;color:#fff;display:flex;align-items:center;justify-content:center;min-height:100vh;text-align:center;padding:20px;background:radial-gradient(circle at 50% 0%,#1e1e1e,#0f0f0f)}
+  .box{background:#1e1e1e;padding:28px 24px;border-radius:20px;border:1px solid rgba(255,255,255,0.08);max-width:380px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.5);animation:pop 0.4s ease}
+  @keyframes pop{from{opacity:0;transform:scale(0.9) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+  h2{color:#d6c7a1;font-size:22px;font-weight:900}
+  .icon{font-size:48px;margin-bottom:12px;filter:drop-shadow(0 4px 10px rgba(214,199,161,0.3))}
+  p{color:#9aa0a6;margin-top:10px;font-size:13px;line-height:1.7}
+  .feat{margin-top:16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:12px;text-align:right}
+  .feat div{font-size:12px;color:#d6c7a1;margin:5px 0;font-weight:700}
+  .feat div span{color:#9aa0a6;font-weight:600}
+  button{margin-top:18px;background:linear-gradient(135deg,#d6c7a1,#c7b07a);color:#000;border:none;padding:12px 20px;border-radius:12px;font-weight:900;width:100%;cursor:pointer;transition:all 0.2s;box-shadow:0 6px 20px rgba(214,199,161,0.25);font-size:14px}
+  button:active{transform:scale(0.97)}
+  .online-dot{width:8px;height:8px;background:#2ecc71;border-radius:50%;display:inline-block;margin-left:6px;animation:blink 1.5s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+</style>
+</head>
+<body>
+<div class="box">
+  <div class="icon">📴</div>
+  <h2>أنت غير متصل</h2>
+  <p>لا تقلق، <b style="color:#fff">ميزان المحاسبة V21</b> يعمل بالكامل بدون انترنت</p>
+  
+  <div class="feat">
+    <div>✅ <span>أوقات الصلاة:</span> حساب فلكي دقيق من جهازك</div>
+    <div>✅ <span>صلاة الليل:</span> قبل الشروق بـ 220 دقيقة</div>
+    <div>✅ <span>القبلة:</span> حساب فلكي + بوصلة</div>
+    <div>✅ <span>الإشعارات:</span> محفوظة وتعمل في الخلفية</div>
+    <div>✅ <span>الميزان:</span> ذنوبك وطاعاتك محفوظة</div>
+  </div>
+
+  <p id="status" style="margin-top:14px;font-size:11px"><span class="online-dot"></span> بانتظار عودة الانترنت...</p>
+  
+  <button onclick="location.href='./index.html'">العودة للتطبيق</button>
+  <button onclick="location.reload()" style="background:rgba(255,255,255,0.06);color:#9aa0a6;border:1px solid rgba(255,255,255,0.08);box-shadow:none;margin-top:10px">تحديث الصفحة</button>
+</div>
+
+<script>
+  // اذا رجع النت، ارجع تلقائيا
+  window.addEventListener('online', ()=>{ 
+    document.getElementById('status').innerHTML='✅ عاد الانترنت - جاري العودة...';
+    setTimeout(()=>location.href='./index.html', 800);
+  });
+  // حاول تحميل الكاش
+  if(!navigator.onLine){
+    setTimeout(()=>{
+      // نذكر المستخدم ان الإشعارات الخلفية ستبقى تعمل
+      console.log('offline mode - background notifications still scheduled in SW');
+    }, 1000);
+  }
+</script>
+</body>
+</html>
